@@ -19,7 +19,7 @@ class TextModel:
         return self.__pattern
 
     def search(self):
-        self.__occurrences = search.boyer_moore_search(self.text, self.pattern)
+        self.__occurrences = search.boyer_moore_search(self.__text, self.__pattern)
 
     def get_occurences(self):
         return self.__occurrences

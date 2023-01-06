@@ -24,7 +24,7 @@ def boyer_moore_search(text, pattern):
             i += len(pattern)
         
         if text[i] in bad_table:
-            i += bad_table[text[i]] + 1
+            i += bad_table[text[i]]
 
         else:
             i += len(pattern)
