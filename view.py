@@ -33,17 +33,19 @@ class TextView:
         self.text.delete("1.0", tk.END)
         self.text.insert("1.0", text)
 
-    def highlight_pattern(self, pattern):
+    def highlight_pattern(self, occurences, pattern_len):
         self.text.tag_remove("highlight", "1.0", tk.END)
         self.text.tag_config("highlight", background="yellow")
+        
         start = "1.0"
-        while True:
-            start = self.text.search(pattern, start, stopindex=tk.END)
-            if not start:
-                break
-            end = f"{start}+{len(pattern)}c"
+        text = self.text.get("1.0", tk.END)
+
+        for index in occurences:
+            line = text.count("\n", 0, index) + 1
+            column = index - text.rfind("\n", 0, index) - 1
+            start = f"{line}.{column}"
+            end = f"{start}+{pattern_len}c"
             self.text.tag_add("highlight", start, end)
-            start = end
 
     def set_occurrences(self, occurrences):
         self.occurrences_label.config(text=f"Occurrences: {occurrences}")
