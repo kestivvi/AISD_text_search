@@ -1,9 +1,10 @@
 import tkinter as tk
 
 class TextView:
+
     def __init__(self, root):
         self.root = root
-        self.root.title("Text Search")
+        self.root.title("Text Search ;)")
 
         self.text_frame = tk.Frame(self.root)
         self.text_frame.pack()
