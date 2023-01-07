@@ -1,4 +1,4 @@
-def badMatchesTable(pattern):
+def bad_matches_table(pattern):
     table = {}
 
     for i, c in enumerate(pattern):
@@ -8,7 +8,7 @@ def badMatchesTable(pattern):
 
 
 def boyer_moore_search(text, pattern):
-    bad_table = badMatchesTable(pattern)
+    bad_table = bad_matches_table(pattern)
 
     matches = []
     i = len(pattern) - 1
