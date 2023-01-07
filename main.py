@@ -1,6 +1,6 @@
 import tkinter
 from controller import TextController
 
-root = tkinter.Tk()
-app = TextController(root)
-root.mainloop()
+root = tkinter.Tk()  # Initiliazie tkinter
+app = TextController(root)  # Create an instance of the TextController
+root.mainloop()  # Run graphical interface
