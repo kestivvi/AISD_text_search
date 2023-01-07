@@ -49,6 +49,10 @@ class TextController:
     # Load text from file
     def load(self):
         filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
+        # Check if user selected any file
+        if not filename:
+            return
+
         with open(filename, "r", encoding="utf-8") as file:
             text = file.read()
             self.load_text(text)
