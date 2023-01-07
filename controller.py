@@ -4,6 +4,8 @@ from tkinter import messagebox
 from model import TextModel
 from view import TextView
 
+
+# This class represents a Controller for the GUI elements
 class TextController:
     def __init__(self, root):
         self.model = TextModel()
@@ -13,29 +15,38 @@ class TextController:
         self.view.load_button.config(command=self.load)
         self.view.pattern_entry.bind("<Return>", lambda _event: self.search())
 
+    # Load text into model property and GUI's Text Area
     def load_text(self, text):
         self.model.set_text(text)
         self.view.set_text(text)
 
+    # Search for a certain pattern and finally highlight it when found
     def search(self):
+        # Check if Text is a placeholder
+        if str(self.view.text.get("1.0", 'end-1c')) == TextView.placeholder:
+            return
+
+        # Check if pattern isn't empty
         pattern = self.view.pattern_entry.get()
         if len(pattern) == 0:
             return
 
+        # Check if pattern doesn't end with escape sign
         if pattern[-1] == "\\":
-            messagebox.showerror("Błąd", "Wzorzec nie może konczyć się \"znakiem ucieczki\" (backslash)")
+            messagebox.showerror("Error", "Pattern cannot end with \"escape sign\" (backslash)")
             return
 
         text = self.view.text.get("1.0", tk.END)
         self.model.set_text(text)
         self.model.set_pattern(pattern)
-        
+
         self.model.search()
-        occurences = self.model.get_occurences()
-        
-        self.view.highlight_pattern(occurences, len(pattern))
-        self.view.set_occurrences(len(occurences))
-    
+        occurrences = self.model.get_occurrences()
+
+        self.view.highlight_pattern(occurrences, len(pattern))
+        self.view.set_occurrences(len(occurrences))
+
+    # Load text from file
     def load(self):
         filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
         with open(filename, "r", encoding="utf-8") as file:
