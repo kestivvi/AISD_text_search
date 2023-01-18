@@ -8,7 +8,7 @@ root.mainloop()  # Run graphical interface
 
 # Podział obowiązków:
 #  -> Szkielet oraz model aplikacji - Krzysztof Kwiatkowski
-#  -> Testy jednostkowe wraz z podsumowaniem czasu wykonania - Krzysztof Kwiatkowski
+#  -> Testy jednostkowe oraz obsługa plików zewnętrznych - Krzysztof Kwiatkowski
 #  -> Interfejs graficzny - Bartosz Malec
 #  -> Algorytm Boyer'a i Moore'a - Wspólna implementacja
-#  -> Podłączenie algorytmu do interfejsu graficznego - Wspólna implementacja
+#  -> Podłączenie algorytmu wyszukiwania wzorca do interfejsu graficznego - Wspólna implementacja
