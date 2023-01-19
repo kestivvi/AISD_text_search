@@ -52,6 +52,11 @@ class TextView:
         self.occurrences_label = tk.Label(self.control_frame, text="Occurrences: 0", background=self.background_color)
         self.occurrences_label.pack(side=tk.LEFT, padx=15)
 
+        # Checkbox for case sensitiveness
+        self.case_sensitive_var = tk.BooleanVar()
+        self.case_sensitive_checkbox = tk.Checkbutton(self.control_frame, text="Case sensitive", variable=self.case_sensitive_var)
+        self.case_sensitive_checkbox.pack(side=tk.LEFT)
+
     # Clear a placeholder from Text Area on click
     def clear_placeholder(self, event):
         if self.text.get("1.0", 'end-1c') == TextView.placeholder:
@@ -75,7 +80,7 @@ class TextView:
         start = "1.0"
         text = self.text.get("1.0", tk.END)
 
-        # "occurrences" stores count of found pattern
+        # "occurrences" stores array of places where psttern occur
         for index in occurrences:
             line = text.count("\n", 0, index) + 1
             column = index - text.rfind("\n", 0, index) - 1

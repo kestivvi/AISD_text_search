@@ -1,5 +1,8 @@
 def bad_matches_table(pattern):
-    return { v: max(1, len(pattern) - i - 1) for i, v in enumerate(pattern) }
+    skipList = {}
+    for i in range(0, len(pattern)-1):
+        skipList[pattern[i]] = len(pattern)-i-1
+    return skipList
 
 
 def boyer_moore_search(text, pattern):

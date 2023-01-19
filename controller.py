@@ -35,11 +35,18 @@ class TextController:
         if pattern[-1] == "\\":
             messagebox.showerror("Error", "Pattern cannot end with \"escape sign\" (backslash)")
             return
-
+        
         text = self.view.text.get("1.0", tk.END)
+
+        # Handling case sensitive checkbox
+        case_sensitive = self.view.case_sensitive_var.get()
+        if not case_sensitive:
+            text = text.lower()
+            pattern = pattern.lower()
+
         self.model.set_text(text)
         self.model.set_pattern(pattern)
-
+        
         self.model.search()
         occurrences = self.model.get_occurrences()
 
